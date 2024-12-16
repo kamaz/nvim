@@ -18,7 +18,7 @@ return {
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
 
-		telescope.setup {
+		telescope.setup({
 			defaults = {
 
 				prompt_prefix = " ",
@@ -37,7 +37,8 @@ return {
 					},
 				},
 			},
-		}
+		})
+
 		local telescope_builtin = require('telescope.builtin')
 		vim.keymap.set('n', '<leader>sf', telescope_builtin.find_files, { desc = '[S]earch [f]iles' })
 		vim.keymap.set('n', '<leader>sh', telescope_builtin.help_tags, { desc = '[S]earch [h]elp' })
@@ -47,5 +48,6 @@ return {
 		vim.keymap.set('n', '<leader>sG', telescope_builtin.live_grep, { desc = '[S]earch by [G]ist' })
 		vim.keymap.set('n', '<leader>sd', telescope_builtin.diagnostics, { desc = '[S]earch [d]iagnostics' })
 		vim.keymap.set('n', '<leader>sp', ":Telescope projects<CR>", { desc = '[S]earch [p]rojects' })
+		vim.keymap.set('n', '<leader>b', telescope_builtin.buffers, { desc = '[S]earch [p]rojects' })
 	end
 }

@@ -7,6 +7,16 @@ return {
 			statusline.setup({
 				use_icons = true
 			})
+
+      local surround = require("mini.surround")
+      surround.setup()
+
+      local ai = require("mini.ai")
+      ai.setup()
+
+      -- local operators = require("mini.operators")
+      -- operators.setup()
+
 		end
 	},
 }

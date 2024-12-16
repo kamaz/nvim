@@ -5,14 +5,15 @@ local opts = { silent = true }
 
 -- Normal --
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
+vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
+vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
+vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 
 -- Execute lua
-keymap("n", "<leader>x", "<cmd>.lua<CR>", {desc = "Execute current line"})
-keymap("n", "<leader><leader>x", "<cmd>source %<CR>", {desc = "Execute current file"})
+vim.keymap.set("n", "<leader>x", "<cmd>.lua<CR>", {desc = "Execute current line"})
+vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", {desc = "Execute current file"})
+vim.keymap.set("v", "<leader>x", ":lua<CR>", {desc = "Execute current selection"})
 
 -- Resize with arrows
 keymap("n", "<C-.>", "<c-w>5<")
@@ -33,10 +34,6 @@ keymap("v", "K", ":m '<-2<CR>gv=gv")
 -- When scrolling keep cursor in the middle
 keymap("n", "<C-d>", "<C-d>zz")
 keymap("n", "<C-u>", "<C-u>zz")
-
--- When searching keep search terms in the middle
-keymap("n", "n", "bzzzv")
-keymap("n", "N", "Nzzzv")
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
