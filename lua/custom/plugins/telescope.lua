@@ -49,5 +49,7 @@ return {
 		vim.keymap.set('n', '<leader>sd', telescope_builtin.diagnostics, { desc = '[S]earch [d]iagnostics' })
 		vim.keymap.set('n', '<leader>sp', ":Telescope projects<CR>", { desc = '[S]earch [p]rojects' })
 		vim.keymap.set('n', '<leader>b', telescope_builtin.buffers, { desc = '[S]earch [p]rojects' })
+
+    -- require('config.telescope.multi_grep').setup()
 	end
 }
