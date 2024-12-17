@@ -10,10 +10,6 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
 vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
 vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 
--- Execute lua
-vim.keymap.set("n", "<leader>x", "<cmd>.lua<CR>", {desc = "Execute current line"})
-vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", {desc = "Execute current file"})
-vim.keymap.set("v", "<leader>x", ":lua<CR>", {desc = "Execute current selection"})
 
 -- Resize with arrows
 keymap("n", "<C-.>", "<c-w>5<")
