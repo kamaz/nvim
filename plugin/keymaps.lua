@@ -12,10 +12,10 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 
 
 -- Resize with arrows
-keymap("n", "<C-.>", "<c-w>5<")
-keymap("n", "<C-,>", "<c-w>5>")
-keymap("n", "<C-t>", "<C-W>+")
-keymap("n", "<C-s>", "<C-W>-")
+vim.keymap.set("n", "<C-,>", "<c-w>5<")
+vim.keymap.set("n", "<C-.>", "<c-w>5>")
+vim.keymap.set("n", "<C-t>", "<C-W>+")
+vim.keymap.set("n", "<C-s>", "<C-W>-")
 
 -- Keep the cursor at the beginning of line
 keymap("n", "J", "mzJ`z")
