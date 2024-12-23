@@ -25,8 +25,14 @@ local live_multigrep = function(opts)
       end
 
       if pieces[2] then
-        table.insert(args, "-g")
-        table.insert(args, pieces[2])
+        if pieces[2]:sub(1, 1) == '-' then
+          local args_pieces = vim.split(pieces[2], " ")
+          table.insert(args, args_pieces)
+        else
+          table.insert(args, "-g")
+          table.insert(args, pieces[2])
+        end
+        -- print(vim.inspect(args) .. pieces[2]:sub(1, 1))
       end
 
       -- @diagnostic disable-next-line: deprecated
