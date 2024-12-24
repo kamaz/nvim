@@ -1,5 +1,3 @@
--- Shorten function name
-local keymap = vim.keymap.set
 -- Silent keymap option
 local opts = { silent = true }
 
@@ -18,37 +16,45 @@ vim.keymap.set("n", "<C-t>", "<C-W>+")
 vim.keymap.set("n", "<C-s>", "<C-W>-")
 
 -- Keep the cursor at the beginning of line
-keymap("n", "J", "mzJ`z")
+vim.keymap.set("n", "J", "mzJ`z")
 
 -- Undotree
-keymap("n", "<leader>u", vim.cmd.UndotreeToggle)
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 -- Move lines in visual mode
-keymap("v", "J", ":m '>+1<CR>gv=gv")
-keymap("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- When scrolling keep cursor in the middle
-keymap("n", "<C-d>", "<C-d>zz")
-keymap("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+vim.keymap.set("n", "<S-l>", ":bnext<CR>", opts)
+vim.keymap.set("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Clear highlights
-keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
+vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
-keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
+vim.keymap.set("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- Better paste
-keymap("v", "p", '"_dP', opts)
+vim.keymap.set("v", "p", '"_dP', opts)
 
 -- Insert --
 -- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
+vim.keymap.set("i", "jk", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
+vim.keymap.set("v", "<", "<gv", opts)
+vim.keymap.set("v", ">", ">gv", opts)
+
+-- Close buffer
+vim.keymap.set("n", "<leader>c", function()
+  local last_buf = vim.api.nvim_get_current_buf()
+  local winid = vim.api.nvim_get_current_win()
+  vim.cmd("bp")
+  vim.api.nvim_buf_delete(last_buf, {})
+end, opts)
