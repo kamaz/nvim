@@ -22,15 +22,15 @@ local parse_slides = function(lines)
   return slides
 end
 
-vim.print(parse_slides({
-"# Slide 1",
-"This is the first slide",
-"# Slide 2",
-"This is the second slide",
-}))
+-- vim.print(parse_slides({
+-- "# Slide 1",
+-- "This is the first slide",
+-- "# Slide 2",
+-- "This is the second slide",
+-- }))
 
 --- Setup the present plugin
-M.setup = function()
+M.setup            = function()
 
 end
 

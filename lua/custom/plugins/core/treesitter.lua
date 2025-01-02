@@ -12,7 +12,7 @@ return {
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "html", "typescript", "go", "gosum", "goctl", "gotmpl", "gowork", "gomod", "markdown", "python", "hcl", "json", "cpp", "bash", "json5" },
+        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "html", "typescript", "go", "gosum", "goctl", "gotmpl", "gowork", "gomod", "markdown", "python", "hcl", "json", "cpp", "bash", "json5", "http" },
         sync_install = false,
         highlight = { enable = true },
         indent = { enable = true },
@@ -39,5 +39,16 @@ return {
         }
       })
     end
-  }
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "BufRead",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      event = "BufRead",
+    },
+    opts = {
+      multiwindow = true,
+    },
+  },
 }

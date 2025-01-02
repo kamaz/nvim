@@ -1,24 +1,26 @@
 return {
   {
     "folke/todo-comments.nvim",
-    event = { "BufReadPre", "BufNewFile" },
     dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
+    opts = {
+      keywords = {
+        FIX = {
+          icon = " ",
+          color = "error",
+          alt = { "FIXME", "BUG", "FIXIT", "ISSUE", "fixme", "bug", "fixit", "issue" },
+        },
+        TODO = { icon = " ", color = "info", alt = { "todo" } },
+        HACK = { icon = " ", color = "warning", alt = { "hack" } },
+        WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX", "warn", "warning", "warn" } },
+        PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE", "optimise", "perf", "optimize", "performance" } },
+        NOTE = { icon = " ", color = "hint", alt = { "INFO", "info", "note" } },
+        TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED", "testing", "passed", "failed" } },
+      }
+    },
+    config = function(_, opts)
       local todo_comments = require("todo-comments")
-
-      vim.keymap.set("n", "]t", function()
-        todo_comments.jump_next()
-      end, { desc = "Next todo comment" })
-
-      vim.keymap.set("n", "[t", function()
-        todo_comments.jump_prev()
-      end, { desc = "Previous todo comment" })
-
-      vim.keymap.set("n", "<leader>st", function()
-        vim.cmd("TodoTelescope")
-      end, { desc = "Search todo comment" })
-
-      todo_comments.setup()
+      todo_comments.setup(opts)
+      require("config.keymaps").todo()
     end,
   }
 }
