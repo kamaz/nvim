@@ -18,3 +18,6 @@ Good starting points:
 - [fredrikaverpil](https://github.com/fredrikaverpil/dotfiles/blob/main/nvim-fredrik/README.md)
 
 
+Lua plugin development:
+
+- [Docker](https://www.youtube.com/watch?v=HXABdG3xJW4)
