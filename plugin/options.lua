@@ -85,6 +85,7 @@ vim.opt.formatoptions:remove({ "c", "r", "o" })
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 vim.opt.list = true
+vim.opt.exrc = true
 vim.opt.showbreak = "↳ "
 vim.opt.listchars =
 	{ tab = "→ ", eol = "↲", nbsp = "␣", trail = "•", extends = "⟩", precedes = "⟨", space = "·" }

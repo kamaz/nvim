@@ -22,8 +22,8 @@ return {
         end,
       })
 
-      -- set initial state to auto-format
-      vim.g.auto_format = true
+			-- set initial state to auto-format
+			vim.g.auto_format = true
 
       require("conform").setup({
         formatters_by_ft = {
