@@ -7,7 +7,7 @@ return {
     "stevearc/conform.nvim",
     lazy = true,
     event = "BufWritePre",
-    config = function(_, opts)
+    config = function(_, _opts)
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
         callback = function(args)
@@ -33,7 +33,7 @@ return {
           -- Conform will run multiple formatters sequentially
           python = { "isort", "black" },
           -- Conform will run the first available formatter
-          javascript = { "prettierd", "eslint_d", stop_after_first = true },
+          javascript = { "prettierd" },
         },
       })
       require("config.keymaps").conform()
