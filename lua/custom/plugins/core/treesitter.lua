@@ -39,6 +39,7 @@ return {
 					"json5",
 					"http",
 					"just",
+					"yaml",
 				},
 				sync_install = false,
 				highlight = { enable = true },

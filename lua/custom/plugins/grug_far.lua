@@ -1,27 +1,28 @@
+-- Find And Replace plugin for neovim
 return {
-  {
-    "MagicDuck/grug-far.nvim",
-    lazy = true,
-    dependencies = {
-      {
-        "zbirenbaum/copilot.lua",
-        opts = {
-          filetypes = {
+	{
+		"MagicDuck/grug-far.nvim",
+		lazy = true,
+		dependencies = {
+			{
+				"zbirenbaum/copilot.lua",
+				opts = {
+					filetypes = {
 
-            ["grug-far"] = false,
-            ["grug-far-history"] = false,
-          },
-        },
-      },
-    },
-    opts = {
-      prefills = {
-        filesFilter = "*.*",
-      },
-    },
-    config = function(_, opts)
-      require("grug-far").setup(opts)
-    end,
-    keys = require("config.keymaps").grug_far(),
-  },
+						["grug-far"] = false,
+						["grug-far-history"] = false,
+					},
+				},
+			},
+		},
+		opts = {
+			prefills = {
+				filesFilter = "*.*",
+			},
+		},
+		config = function(_, opts)
+			require("grug-far").setup(opts)
+		end,
+		keys = require("config.keymaps").grug_far(),
+	},
 }

@@ -64,8 +64,10 @@ local function setup_handler(server)
 		end
 	end
 
+	-- print("server: " .. server)
 	local lsp = require("lspconfig")[server]
 	if lsp.setup ~= nil then
+		-- print("server: " .. server .. ", setup: ", vim.inspect(server_opts))
 		-- see all server configurations: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 		lsp.setup(server_opts)
 	else
@@ -107,7 +109,7 @@ local function create_server_setup_autocmds(opts)
 			else
 				vim.api.nvim_create_autocmd("FileType", {
 					pattern = server_opts.filetypes,
-					callback = function(ev)
+					callback = function(_)
 						-- print("In autocmd, for language " .. ev.match .. ", using server " .. server)
 						local clients = vim.lsp.get_clients({ name = server })
 						if #clients == 0 then
@@ -188,13 +190,32 @@ return {
 				--     },
 				--   },
 				-- },
+				-- fixme: move this to lang/typescript.lua
+				ts_ls = {
+					cmd = { "typescript-language-server", "--stdio" },
+
+					init_options = {
+						tsserver = {
+							trace = "verbose",
+							log = "verbose",
+						},
+					},
+					filetypes = {
+						"javascript",
+						"javascriptreact",
+						"javascript.jsx",
+						"typescript",
+						"typescriptreact",
+						"typescript.tsx",
+					},
+				},
 			},
 		},
 		config = function(_, opts)
 			--keys of opts.servers
 			-- per language extension of LSP settings
 			if opts.extends then
-				for extendee, servers in pairs(opts.extends) do
+				for _, servers in pairs(opts.extends) do
 					for server, server_opts in pairs(servers.servers) do
 						-- vim.notify("Extending " .. server .. " on behalf of " .. extendee)
 						opts.servers = require("utils.table").deep_merge(opts.servers, { [server] = server_opts })
