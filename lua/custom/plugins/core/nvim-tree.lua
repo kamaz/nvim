@@ -3,7 +3,7 @@ return {
 		"kyazdani42/nvim-tree.lua",
 		config = function()
 			local nvim_tree = require("nvim-tree")
-			nvim_tree.setup {
+			nvim_tree.setup({
 				update_focused_file = {
 					enable = true,
 					update_cwd = true,
@@ -50,8 +50,8 @@ return {
 					width = 30,
 					side = "left",
 				},
-			}
+			})
 			vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
-		end
-	}
+		end,
+	},
 }

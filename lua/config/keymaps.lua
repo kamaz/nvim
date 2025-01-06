@@ -681,7 +681,18 @@ function M.neogit()
 	vim.keymap.set("n", "<leader>gn", open_in_split, { silent = true, noremap = true, desc = "Neogit" })
 	vim.keymap.set("n", "<leader>gp", ":Neogit pull<CR>", { silent = true, noremap = true, desc = "[g]it [p]ull" })
 	vim.keymap.set("n", "<leader>gP", ":Neogit push<CR>", { silent = true, noremap = true, desc = "[g]it [P]ush" })
-	-- NOTE: see Telescope git_... commands set by setup_telescope_keymaps
+	vim.keymap.set(
+		"n",
+		"<leader>gc",
+		":Telescope git_commits<CR>",
+		{ silent = true, noremap = true, desc = "[g]it [c]ommits" }
+	)
+	vim.keymap.set(
+		"n",
+		"<leader>gb",
+		":Telescope git_branches<CR>",
+		{ silent = true, noremap = true, desc = "[g]it [b]ranches" }
+	)
 end
 
 function M.grug_far()
@@ -745,7 +756,7 @@ function M.gitsigns(bufnr)
 	)
 	vim.keymap.set(
 		"n",
-		"<leader>gbb",
+		"<leader>ghb",
 		gs.blame,
 		{ buffer = bufnr, silent = true, noremap = true, desc = "[b]lame on the side" }
 	)
@@ -821,11 +832,11 @@ function M.whichkey(wk)
 		{ "<leader>d", group = "debug" },
 		{ "<leader>b", group = "buffer" },
 		{ "<leader>g", group = "git" },
-		{ "<leader>gb", group = "blame" },
 		{ "<leader>gd", group = "diffview" },
 		{ "<leader>gh", group = "hunks" },
 		{ "<leader>n", group = "notes" },
 		{ "<leader>r", group = "run" },
+		{ "<leader>rt", group = "terminal" },
 		{ "<leader>s", group = "search" },
 		{ "<leader>sn", group = "noice" },
 		{ "<leader>t", group = "test" },

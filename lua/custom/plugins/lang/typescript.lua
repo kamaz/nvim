@@ -1,3 +1,5 @@
+local path = vim.fn.stdpath("config")
+local vitest_path = path .. "/plugins/vitest.nvim"
 local filetypes =
 	{ "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
 
@@ -81,12 +83,13 @@ return {
 		lazy = true,
 		ft = filetypes,
 		dependencies = {
-			{ "marilari88/neotest-vitest" },
+			-- { "marilari88/neotest-vitest" },
+			{ dir = vitest_path, lazy = true },
 		},
 
 		opts = function(_, opts)
 			opts.adapters = opts.adapters or {}
-			opts.adapters["neotest-vitest"] = {}
+			opts.adapters["vitest"] = {}
 		end,
 	},
 }
