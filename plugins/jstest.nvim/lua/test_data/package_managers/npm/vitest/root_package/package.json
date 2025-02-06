@@ -1,0 +1,6 @@
+{
+  "name": "root_package",
+  "devDependencies": {
+    "vitest": "^3.0.1"
+  }
+}

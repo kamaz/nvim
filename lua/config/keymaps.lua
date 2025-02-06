@@ -639,12 +639,12 @@ end
 
 function M.obsidian(obsidian_vars)
 	return {
-		{ "<leader>ns", "<cmd>ObsidianSearch<cr>", desc = "[N]otes: [s]earch text" },
-		{ "<leader>nf", "<cmd>ObsidianQuickSwitch<cr>", desc = "[N]otes: search [f]ilenames" },
-		{ "<leader>nn", "<cmd>ObsidianNew<cr>", desc = "[N]otes: [n]new" },
-		{ "<leader>nl", "<cmd>ObsidianQuickSwitch Learning.md<cr><cr>", desc = "[N]otes: [l]earning" },
-		{ "<leader>ng", "<cmd>ObsidianQuickSwitch Go.md<cr><cr>", desc = "[N]otes: [g]olang learning" },
-		{ "<leader>nv", "<cmd>ObsidianQuickSwitch Neovim config.md<cr><cr>", desc = "[N]otes: Neo[v]im todo" },
+		{ "<leader>ns", "<cmd>ObsidianSearch<cr>", desc = "[n]otes: [s]earch text" },
+		{ "<leader>nf", "<cmd>ObsidianQuickSwitch<cr>", desc = "[n]otes: search [f]ilenames" },
+		{ "<leader>nn", "<cmd>ObsidianNew<cr>", desc = "[n]otes: [n]new" },
+		{ "<leader>nl", "<cmd>ObsidianQuickSwitch Learning.md<cr><cr>", desc = "[n]otes: [l]earning" },
+		{ "<leader>ng", "<cmd>ObsidianQuickSwitch Go.md<cr><cr>", desc = "[n]otes: [g]olang learning" },
+		{ "<leader>nv", "<cmd>ObsidianQuickSwitch Neovim config.md<cr><cr>", desc = "[n]otes: Neo[v]im todo" },
 
 		{
 			"<leader>nS",
@@ -652,7 +652,7 @@ function M.obsidian(obsidian_vars)
 				local client = require("obsidian").get_client()
 				client:open_note(obsidian_vars.scratchpad_path)
 			end,
-			desc = "[N]otes: [S]cratchpad",
+			desc = "[n]otes: [S]cratchpad",
 		},
 		{
 			"<leader>nm",
@@ -668,7 +668,7 @@ function M.obsidian(obsidian_vars)
 				})
 				client:open_note(note)
 			end,
-			desc = "[N]otes: new [m]eeting agenda from template",
+			desc = "[n]otes: new [m]eeting agenda from template",
 		},
 	}
 end

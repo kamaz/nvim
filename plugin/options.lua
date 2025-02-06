@@ -75,7 +75,7 @@ vim.opt.guifont = "JetBrainsMono\\ NFM:h12"
 -- show empty lines at the end of a buffer as ` ` {default `~`}
 vim.opt.fillchars.eob = " "
 -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append("c")
 -- keys allowed to move to the previous/next line when the beginning/end of line is reached
 vim.opt.whichwrap:append("<,>,[,],h,l")
 -- treats words with `-` as single words
@@ -86,4 +86,6 @@ vim.opt.linebreak = true
 vim.opt.breakindent = true
 vim.opt.list = true
 vim.opt.showbreak = "↳ "
-vim.opt.listchars = { tab = "→ ", eol = "↲", nbsp = "␣", trail = "•", extends = "⟩", precedes = "⟨", space = "·" }
+vim.opt.listchars =
+	{ tab = "→ ", eol = "↲", nbsp = "␣", trail = "•", extends = "⟩", precedes = "⟨", space = "·" }
+vim.opt.runtimepath:append("~/.config/nvim-lazyvim/plugins/jstest.nvim/")

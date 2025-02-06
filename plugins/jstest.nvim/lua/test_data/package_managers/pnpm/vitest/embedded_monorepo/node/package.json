@@ -1,0 +1,6 @@
+{
+  "name": "monorepo",
+  "devDependencies": {
+    "vitest": "^3.0.1"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "package1",
+  "devDependencies": {
+    "vitest": "3.0.0"
+  }
+}

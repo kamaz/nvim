@@ -1,10 +1,9 @@
+print("vitest")
 ---@diagnostic disable: undefined-field
 local async = require("neotest.async")
 local lib = require("neotest.lib")
 local logger = require("neotest.logging")
 local util = require("util")
-
-local uv = vim.uv
 
 ---@class neotest.VitestOptions
 ---@field vitestCommand? string|fun(): string
@@ -17,6 +16,7 @@ local uv = vim.uv
 ---@class neotest.Adapter
 local adapter = { name = "vitest" }
 
+-- we have to work from top down
 local rootPackageJson = vim.fn.getcwd() .. "/package.json"
 
 ---@param packageJsonContent string
@@ -41,7 +41,7 @@ end
 local function hasRootProjectVitestDependency()
 	local success, packageJsonContent = pcall(lib.files.read, rootPackageJson)
 	if not success then
-		print("cannot read package.json")
+		-- print("cannot read package.json")
 		return false
 	end
 
@@ -51,6 +51,7 @@ end
 ---@param path string
 ---@return boolean
 local function hasVitestDependency(path)
+	-- print("what is the vitest dependency path: " .. path)
 	local rootPath = lib.files.match_root_pattern("package.json")(path)
 
 	if not rootPath then
@@ -59,7 +60,7 @@ local function hasVitestDependency(path)
 
 	local success, packageJsonContent = pcall(lib.files.read, rootPath .. "/package.json")
 	if not success then
-		print("cannot read package.json")
+		-- print("cannot read package.json")
 		return false
 	end
 
@@ -80,16 +81,20 @@ local function hasVitestDependency(path)
 end
 
 adapter.root = function(path)
-	return lib.files.match_root_pattern("package.json")(path)
+	print("vitest adapter root: ", path)
+	-- return lib.files.match_root_pattern("package.json")(path)
+	return path
 end
 
 function adapter.filter_dir(name, _relpath, _root)
+	-- print("adapter filter dir: ", name, _relpath, _root)
 	return name ~= "node_modules"
 end
 
 ---@param file_path? string
 ---@return boolean
 function adapter.is_test_file(file_path)
+	-- print("is test file: ", file_path)
 	if file_path == nil then
 		return false
 	end
@@ -103,17 +108,19 @@ function adapter.is_test_file(file_path)
 		for _, ext in ipairs({ "js", "jsx", "coffee", "ts", "tsx" }) do
 			if string.match(file_path, "%." .. x .. "%." .. ext .. "$") then
 				is_test_file = true
-				goto matched_pattern
+				break
 			end
 		end
 	end
-	::matched_pattern::
+	-- print("is test file is ", is_test_file)
+
 	return is_test_file and hasVitestDependency(file_path)
 end
 
 ---@async
 ---@return neotest.Tree | nil
 function adapter.discover_positions(path)
+	-- print("discover position")
 	local query = [[
     ; -- Namespaces --
     ; Matches: `describe('context')`
@@ -278,13 +285,14 @@ end
 local function getCwd(path)
 	local nodeModulesPaths = util.find_node_modules_ancestors(path)
 	local lastPath = nodeModulesPaths[#nodeModulesPaths - 1]
-	print("last node modules paths: " .. lastPath)
+	-- print("last node modules paths: " .. lastPath)
 	return lastPath
 end
 
 ---@param args neotest.RunArgs
 ---@return neotest.RunSpec | nil
 function adapter.build_spec(args)
+	-- print("build spec")
 	local results_path = async.fn.tempname() .. ".json"
 	local tree = args.tree
 
@@ -367,6 +375,7 @@ end
 ---@param spec neotest.RunSpec
 ---@return neotest.Result[]
 function adapter.results(spec, b, tree)
+	logger.info("results")
 	spec.context.stop_stream()
 
 	local output_file = spec.context.results_path

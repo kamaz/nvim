@@ -190,7 +190,7 @@ return {
 				--     },
 				--   },
 				-- },
-				-- fixme: move this to lang/typescript.lua
+				-- FIXME: move this to lang/typescript.lua
 				ts_ls = {
 					cmd = { "typescript-language-server", "--stdio" },
 
