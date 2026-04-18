@@ -80,14 +80,17 @@ local function ensure_servers_installed(opts)
 	local supported_servers = {}
 	local have_mason_lspconfig, _ = pcall(require, "mason-lspconfig")
 	if have_mason_lspconfig then
-		supported_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
-		local enabled_servers = {}
-		for server, server_opts in pairs(opts.servers) do
-			if server_opts then
-				if server_opts.mason ~= false and vim.tbl_contains(supported_servers, server) then
-					table.insert(enabled_servers, server)
-				else
-					vim.notify("LSP server not supported by mason-lspconfig: " .. server, vim.log.levels.WARN)
+		local have_mason_mappings_server, _ = pcall(require("mason-lspconfig.mappings.server"))
+		if have_mason_mappings_server then
+			supported_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
+			local enabled_servers = {}
+			for server, server_opts in pairs(opts.servers) do
+				if server_opts then
+					if server_opts.mason ~= false and vim.tbl_contains(supported_servers, server) then
+						table.insert(enabled_servers, server)
+					else
+						vim.notify("LSP server not supported by mason-lspconfig: " .. server, vim.log.levels.WARN)
+					end
 				end
 			end
 		end
@@ -242,7 +245,7 @@ return {
 			G_client_capabilities = client_capabilities
 			G_lspconfig_opts = opts
 
-			ensure_servers_installed(opts)
+			-- ensure_servers_installed(opts)
 			create_server_setup_autocmds(opts) -- set up LSP based on filetype
 
 			-- set up keymaps
